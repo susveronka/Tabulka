@@ -1,4 +1,5 @@
 import javax.swing.table.AbstractTableModel;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,8 @@ public class KvetinyTableModel extends AbstractTableModel {
     public KvetinyTableModel(List<Kvetina> coZobrazit){
         this.data.addAll(coZobrazit);
     }
+
+
 
 
     @Override
@@ -25,12 +28,15 @@ public class KvetinyTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Kvetina kvetinaNaRadku = data.get(rowIndex);
         switch (columnIndex){
-            case 0: return rowIndex;
+            case 0: return rowIndex +1;
             case 1 : return kvetinaNaRadku.getNazev();
             case 2: return  kvetinaNaRadku.getPocet();
-            case 3: return  kvetinaNaRadku.getBarva().toString();
+            case 3:
+            Color barva = kvetinaNaRadku.getBarva();
+            String popisBarvy = barva.getRed() + "," + barva.getGreen() + "," + barva.getBlue();
+                return popisBarvy;
             default:
-                throw new RuntimeException("špatné číslo sloupce" + columnIndex);
+                throw new RuntimeException("špatné číslo sloupce:" + columnIndex);
         }
 
     }
