@@ -40,4 +40,17 @@ public class KvetinyTableModel extends AbstractTableModel {
         }
 
     }
+
+    @Override
+    public String getColumnName(int column) {
+        return switch (column){
+            case 0  -> "pořadí";
+            case 1 -> "název";
+            case 2 -> "počet kusů";
+            case 3 -> "barva";
+            default -> throw new RuntimeException(
+                    "špatné číslo sloupce:" + column + "!");
+
+        };
+    }
 }
